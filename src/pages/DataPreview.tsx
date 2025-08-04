@@ -1,0 +1,81 @@
+import { FileSpreadsheet, Eye } from "lucide-react";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Button } from "@/components/ui/button";
+
+const DataPreview = () => {
+  // Mock CSV data for preview
+  const mockData = [
+    { id: 1, name: "John Doe", email: "john@example.com", company: "Acme Corp", position: "Manager" },
+    { id: 2, name: "Jane Smith", email: "jane@example.com", company: "Tech Inc", position: "Developer" },
+    { id: 3, name: "Bob Johnson", email: "bob@example.com", company: "Design Co", position: "Designer" },
+  ];
+
+  return (
+    <div className="container mx-auto p-6 space-y-6">
+      <div className="flex items-center gap-3 mb-8">
+        <Eye className="h-8 w-8 text-primary" />
+        <div>
+          <h1 className="text-3xl font-bold">Data Preview</h1>
+          <p className="text-muted-foreground">Review your uploaded CSV data</p>
+        </div>
+      </div>
+
+      <Card className="shadow-soft">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <FileSpreadsheet className="h-5 w-5 text-primary" />
+            CSV Data Table
+          </CardTitle>
+          <CardDescription>
+            Preview of your uploaded CSV data. Check that all fields are correctly parsed.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="rounded-lg border overflow-hidden">
+            <Table>
+              <TableHeader>
+                <TableRow className="bg-muted/50">
+                  <TableHead>ID</TableHead>
+                  <TableHead>Name</TableHead>
+                  <TableHead>Email</TableHead>
+                  <TableHead>Company</TableHead>
+                  <TableHead>Position</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {mockData.map((row) => (
+                  <TableRow key={row.id} className="hover:bg-muted/30">
+                    <TableCell className="font-mono text-sm">{row.id}</TableCell>
+                    <TableCell className="font-medium">{row.name}</TableCell>
+                    <TableCell className="text-muted-foreground">{row.email}</TableCell>
+                    <TableCell>{row.company}</TableCell>
+                    <TableCell>{row.position}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
+
+          <div className="mt-4 p-4 bg-muted/20 rounded-lg">
+            <p className="text-sm text-muted-foreground">
+              {/* TODO: Parse and render CSV data as table */}
+              Total rows: {mockData.length} | Columns detected: 5
+            </p>
+          </div>
+        </CardContent>
+      </Card>
+
+      <div className="flex justify-between">
+        <Button variant="outline">
+          Back to Upload
+        </Button>
+        <Button className="bg-gradient-primary shadow-elegant">
+          Continue to Field Mapping
+        </Button>
+      </div>
+    </div>
+  );
+};
+
+export default DataPreview;
