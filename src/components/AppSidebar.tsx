@@ -46,7 +46,7 @@ export function AppSidebar() {
           <div className="flex items-center gap-2">
             <FileText className="h-6 w-6 text-primary" />
             {!collapsed && (
-              <h1 className="font-semibold text-lg">PDF Filler</h1>
+              <h1 className="font-semibold text-lg">IEK tool</h1>
             )}
           </div>
         </div>
