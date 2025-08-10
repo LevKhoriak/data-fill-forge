@@ -6,8 +6,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Label } from "@/components/ui/label";
 
 import { Link } from 'react-router-dom';
+import { useState } from "react";
 
 const Export = () => {
+  const [outputFormat, setOutputFormat] = useState("PDF");
   return (
     <div className="container mx-auto p-6 space-y-6">
       <div className="flex items-center gap-3 mb-8">
@@ -33,27 +35,13 @@ const Export = () => {
           <CardContent className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="output-format">Output Format</Label>
-              <Select defaultValue="pdf">
+              <Select value={outputFormat} onValueChange={setOutputFormat}>
                 <SelectTrigger>
                   <SelectValue placeholder="Select format" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="pdf">PDF (.pdf)</SelectItem>
-                  <SelectItem value="ai">Adobe Illustrator (.ai)</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="naming-convention">File Naming</Label>
-              <Select defaultValue="name-based">
-                <SelectTrigger>
-                  <SelectValue placeholder="Select naming convention" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="name-based">Based on Name field</SelectItem>
-                  <SelectItem value="id-based">Based on ID field</SelectItem>
-                  <SelectItem value="sequential">Sequential numbering</SelectItem>
+                  <SelectItem value="PDF">PDF (.pdf)</SelectItem>
+                  <SelectItem value="AI">Adobe Illustrator (.ai)</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -64,7 +52,7 @@ const Export = () => {
                 size="lg"
               >
                 <Download className="h-5 w-5 mr-2" />
-                Generate PDF Files
+                Generate {outputFormat} Files
               </Button>
             </div>
 
@@ -100,7 +88,7 @@ const Export = () => {
               </div>
               <div className="flex justify-between items-center">
                 <span className="text-sm font-medium">Output format:</span>
-                <span className="text-sm text-muted-foreground">PDF</span>
+                <span className="text-sm text-muted-foreground">{outputFormat}</span>
               </div>
             </div>
 
