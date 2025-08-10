@@ -4,17 +4,20 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 import { Link } from 'react-router-dom';
 
 const Styling = () => {
+  const { t } = useLanguage();
+  
   return (
     <div className="container mx-auto p-6 space-y-6">
       <div className="flex items-center gap-3 mb-8">
         <Palette className="h-8 w-8 text-primary" />
         <div>
-          <h1 className="text-3xl font-bold">Styling Options</h1>
-          <p className="text-muted-foreground">Customize background colors for elements</p>
+          <h1 className="text-3xl font-bold">{t('pages.styling.stylingOptions')}</h1>
+          <p className="text-muted-foreground">{t('pages.styling.customizeBackgroundColors')}</p>
         </div>
       </div>
 
@@ -24,23 +27,23 @@ const Styling = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Circle className="h-5 w-5 text-primary" />
-              Background Color Controls
+              {t('pages.styling.backgroundColorControls')}
             </CardTitle>
             <CardDescription>
-              Set RGB and CMYK colors for the background of the template.
+              {t('pages.styling.setRgbCmykColors')}
             </CardDescription>
           </CardHeader>
           <CardContent>
             <Tabs defaultValue="background-color" className="space-y-6">
               <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="background-color">RGB Color</TabsTrigger>
-                <TabsTrigger value="cmyk-color">CMYK Color</TabsTrigger>
+                <TabsTrigger value="background-color">{t('pages.styling.rgbColor')}</TabsTrigger>
+                <TabsTrigger value="cmyk-color">{t('pages.styling.cmykColor')}</TabsTrigger>
               </TabsList>
 
               <TabsContent value="background-color" className="space-y-6">
                 <div className="space-y-4">
                   <div className="space-y-2">
-                    <Label htmlFor="bg-rgb-red">Red</Label>
+                    <Label htmlFor="bg-rgb-red">{t('pages.styling.red')}</Label>
                     <Input 
                       id="bg-rgb-red"
                       type="number" 
@@ -51,7 +54,7 @@ const Styling = () => {
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="bg-rgb-green">Green</Label>
+                    <Label htmlFor="bg-rgb-green">{t('pages.styling.green')}</Label>
                     <Input 
                       id="bg-rgb-green"
                       type="number" 
@@ -62,7 +65,7 @@ const Styling = () => {
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="bg-rgb-blue">Blue</Label>
+                    <Label htmlFor="bg-rgb-blue">{t('pages.styling.blue')}</Label>
                     <Input 
                       id="bg-rgb-blue"
                       type="number" 
@@ -78,7 +81,7 @@ const Styling = () => {
               <TabsContent value="cmyk-color" className="space-y-6">
                 <div className="space-y-4">
                   <div className="space-y-2">
-                    <Label htmlFor="bg-cmyk-cyan">Cyan (%)</Label>
+                    <Label htmlFor="bg-cmyk-cyan">{t('pages.styling.cyan')}</Label>
                     <Input 
                       id="bg-cmyk-cyan"
                       type="number" 
@@ -89,7 +92,7 @@ const Styling = () => {
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="bg-cmyk-magenta">Magenta (%)</Label>
+                    <Label htmlFor="bg-cmyk-magenta">{t('pages.styling.magenta')}</Label>
                     <Input 
                       id="bg-cmyk-magenta"
                       type="number" 
@@ -100,7 +103,7 @@ const Styling = () => {
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="bg-cmyk-yellow">Yellow (%)</Label>
+                    <Label htmlFor="bg-cmyk-yellow">{t('pages.styling.yellow')}</Label>
                     <Input 
                       id="bg-cmyk-yellow"
                       type="number" 
@@ -111,7 +114,7 @@ const Styling = () => {
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="bg-cmyk-black">Black (%)</Label>
+                    <Label htmlFor="bg-cmyk-black">{t('pages.styling.black')}</Label>
                     <Input 
                       id="bg-cmyk-black"
                       type="number" 
@@ -127,7 +130,7 @@ const Styling = () => {
 
             <div className="mt-6 p-4 bg-muted/20 rounded-lg">
               <p className="text-sm text-muted-foreground">
-                The colors chosen will apply to the background of the output file.
+                {t('pages.styling.colorsChosenApply')}
               </p>
             </div>
           </CardContent>
@@ -138,10 +141,10 @@ const Styling = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Eye className="h-5 w-5 text-primary" />
-              SVG Preview
+              {t('pages.styling.svgPreview')}
             </CardTitle>
             <CardDescription>
-              Preview your output file with the applied styling changes.
+              {t('pages.styling.previewOutputFile')}
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -150,20 +153,20 @@ const Styling = () => {
                 <div className="text-center space-y-2">
                   <Eye className="h-12 w-12 text-muted-foreground/50 mx-auto" />
                   <p className="text-sm text-muted-foreground">
-                    SVG preview will appear here
+                    {t('pages.styling.svgPreviewWillAppear')}
                   </p>
                   <p className="text-xs text-muted-foreground/70">
-                    Apply styling changes to see the preview update
+                    {t('pages.styling.applyStylingChanges')}
                   </p>
                 </div>
               </div>
               
               <div className="flex gap-2">
                 <Button variant="outline" size="sm" className="flex-1">
-                  Refresh Preview
+                  {t('pages.styling.refreshPreview')}
                 </Button>
                 <Button variant="outline" size="sm" className="flex-1">
-                  Download SVG
+                  {t('pages.styling.downloadSvg')}
                 </Button>
               </div>
             </div>
@@ -174,12 +177,12 @@ const Styling = () => {
       <div className="flex justify-between">
         <Button variant="outline">
           <Link to='/edit'>
-            Back to Edit Data
+            {t('pages.styling.backToEditData')}
           </Link>
         </Button>
         <Button className="bg-gradient-primary shadow-elegant">
           <Link to='/export'>
-            Continue to Export
+            {t('pages.styling.continueToExport')}
           </Link>
         </Button>
       </div>

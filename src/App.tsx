@@ -5,9 +5,11 @@ import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AppSidebar } from "./components/AppSidebar";
+import { LanguageProvider } from "./contexts/LanguageContext";
+import { HeaderLanguageIndicator } from "./components/HeaderLanguageIndicator";
 import Upload from "./pages/Upload";
 import DataPreview from "./pages/DataPreview";
-import FieldMapping from "./pages/FieldMapping";
+import TemplateSelection from "./pages/TemplateSelection";
 import EditData from "./pages/EditData";
 import Styling from "./pages/Styling";
 import Export from "./pages/Export";
@@ -17,33 +19,36 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <SidebarProvider>
-          <div className="min-h-screen flex w-full">
-            <AppSidebar />
-            <div className="flex-1 flex flex-col">
-              <header className="h-12 flex items-center border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-                <SidebarTrigger className="ml-4" />
-              </header>
-              <main className="flex-1 overflow-auto">
-                <Routes>
-                  <Route path="/" element={<Upload />} />
-                  <Route path="/preview" element={<DataPreview />} />
-                  <Route path="/mapping" element={<FieldMapping />} />
-                  <Route path="/edit" element={<EditData />} />
-                  <Route path="/styling" element={<Styling />} />
-                  <Route path="/export" element={<Export />} />
-                  <Route path="*" element={<NotFound />} />
-                </Routes>
-              </main>
+    <LanguageProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <SidebarProvider>
+            <div className="min-h-screen flex w-full">
+              <AppSidebar />
+              <div className="flex-1 flex flex-col">
+                <header className="h-12 flex items-center justify-between border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+                  <SidebarTrigger className="ml-4" />
+                  <HeaderLanguageIndicator />
+                </header>
+                <main className="flex-1 overflow-auto">
+                  <Routes>
+                    <Route path="/" element={<Upload />} />
+                    <Route path="/preview" element={<DataPreview />} />
+                    <Route path="/mapping" element={<TemplateSelection />} />
+                    <Route path="/edit" element={<EditData />} />
+                    <Route path="/styling" element={<Styling />} />
+                    <Route path="/export" element={<Export />} />
+                    <Route path="*" element={<NotFound />} />
+                  </Routes>
+                </main>
+              </div>
             </div>
-          </div>
-        </SidebarProvider>
-      </BrowserRouter>
-    </TooltipProvider>
+          </SidebarProvider>
+        </BrowserRouter>
+      </TooltipProvider>
+    </LanguageProvider>
   </QueryClientProvider>
 );
 
