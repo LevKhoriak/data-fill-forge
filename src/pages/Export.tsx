@@ -13,7 +13,7 @@ const Export = () => {
       <div className="flex items-center gap-3 mb-8">
         <Download className="h-8 w-8 text-primary" />
         <div>
-          <h1 className="text-3xl font-bold">Export PDF</h1>
+          <h1 className="text-3xl font-bold">Export final design</h1>
           <p className="text-muted-foreground">Generate your filled templates</p>
         </div>
       </div>
