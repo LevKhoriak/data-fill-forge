@@ -5,6 +5,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
+import { Link } from 'react-router-dom';
+
 const Styling = () => {
   return (
     <div className="container mx-auto p-6 space-y-6">
@@ -259,10 +261,14 @@ const Styling = () => {
 
       <div className="flex justify-between">
         <Button variant="outline">
-          Back to Edit Data
+          <Link to='/edit'>
+            Back to Edit Data
+          </Link>
         </Button>
         <Button className="bg-gradient-primary shadow-elegant">
-          Continue to Export
+          <Link to='/export'>
+            Continue to Export
+          </Link>
         </Button>
       </div>
     </div>
