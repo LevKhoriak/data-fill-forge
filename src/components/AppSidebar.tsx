@@ -24,7 +24,7 @@ import {
 const navigationItems = [
   { title: "Upload Files", url: "/", icon: Upload },
   { title: "Data Preview", url: "/preview", icon: FileSpreadsheet },
-  { title: "Field Mapping", url: "/mapping", icon: Settings },
+  { title: "Template Selection", url: "/mapping", icon: Settings },
   { title: "Edit Data", url: "/edit", icon: Table },
   { title: "Styling", url: "/styling", icon: Palette },
   { title: "Export", url: "/export", icon: Download },
