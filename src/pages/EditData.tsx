@@ -4,6 +4,8 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
+import { Link } from 'react-router-dom';
+
 const EditData = () => {
   // Mock editable data
   const mockData = [
@@ -148,10 +150,14 @@ const EditData = () => {
 
       <div className="flex justify-between">
         <Button variant="outline">
-          Back to Field Mapping
+          <Link to='/mapping'>
+            Back to Field Mapping
+          </Link>
         </Button>
         <Button className="bg-gradient-primary shadow-elegant">
-          Continue to Styling
+          <Link to='/styling'>
+            Continue to Styling
+          </Link>
         </Button>
       </div>
     </div>

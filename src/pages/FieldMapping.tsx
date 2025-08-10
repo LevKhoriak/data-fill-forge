@@ -5,6 +5,8 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
+import { Link } from 'react-router-dom';
+
 const FieldMapping = () => {
   // Mock CSV data for mapping
   const mockRecords = [
@@ -121,10 +123,14 @@ const FieldMapping = () => {
 
       <div className="flex justify-between">
         <Button variant="outline">
-          Back to Data Preview
+          <Link to='/preview'>
+            Back to Data Preview
+          </Link>
         </Button>
         <Button className="bg-gradient-primary shadow-elegant">
-          Continue to Edit Data
+          <Link to='/edit'>
+            Continue to Edit Data
+          </Link>
         </Button>
       </div>
     </div>

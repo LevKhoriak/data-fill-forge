@@ -5,6 +5,8 @@ import { Progress } from "@/components/ui/progress";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 
+import { Link } from 'react-router-dom';
+
 const Export = () => {
   return (
     <div className="container mx-auto p-6 space-y-6">
@@ -130,10 +132,14 @@ const Export = () => {
 
       <div className="flex justify-between">
         <Button variant="outline">
-          Back to Styling
+          <Link to='/styling'>
+            Back to Styling
+          </Link>
         </Button>
         <Button variant="outline">
-          Start Over
+          <Link to='/'>
+            Start Over
+          </Link>
         </Button>
       </div>
     </div>

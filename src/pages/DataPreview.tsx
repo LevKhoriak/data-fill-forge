@@ -3,6 +3,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 
+import { Link } from 'react-router-dom';
+
 const DataPreview = () => {
   // Mock CSV data for preview
   const mockData = [
@@ -68,10 +70,14 @@ const DataPreview = () => {
 
       <div className="flex justify-between">
         <Button variant="outline">
-          Back to Upload
+          <Link to='/'>
+            Back to Upload
+          </Link>
         </Button>
         <Button className="bg-gradient-primary shadow-elegant">
-          Continue to Field Mapping
+          <Link to='/mapping'>
+            Continue to Field Mapping
+          </Link>
         </Button>
       </div>
     </div>
