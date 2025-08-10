@@ -14,7 +14,7 @@ const Export = () => {
         <Download className="h-8 w-8 text-primary" />
         <div>
           <h1 className="text-3xl font-bold">Export PDF</h1>
-          <p className="text-muted-foreground">Generate your filled PDF files</p>
+          <p className="text-muted-foreground">Generate your filled templates</p>
         </div>
       </div>
 
@@ -71,7 +71,7 @@ const Export = () => {
             <div className="p-4 bg-muted/20 rounded-lg">
               <p className="text-sm text-muted-foreground">
                 {/* TODO: Trigger export with selected model + template */}
-                This will generate one PDF file for each selected record with the specified template and styling.
+                This will generate the final design file with the selected model information.
               </p>
             </div>
           </CardContent>
@@ -92,28 +92,15 @@ const Export = () => {
             <div className="space-y-3">
               <div className="flex justify-between items-center">
                 <span className="text-sm font-medium">Template:</span>
-                <span className="text-sm text-muted-foreground">template.pdf</span>
+                <span className="text-sm text-muted-foreground">armat_r10n.svg</span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-sm font-medium">Records:</span>
-                <span className="text-sm text-muted-foreground">3 selected</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-sm font-medium">Fields mapped:</span>
-                <span className="text-sm text-muted-foreground">5 fields</span>
+                <span className="text-sm font-medium">Model chosen:</span>
+                <span className="text-sm text-muted-foreground">Armat R10N</span>
               </div>
               <div className="flex justify-between items-center">
                 <span className="text-sm font-medium">Output format:</span>
                 <span className="text-sm text-muted-foreground">PDF</span>
-              </div>
-            </div>
-
-            <div className="pt-4 border-t">
-              <h4 className="text-sm font-medium mb-2">Files to be generated:</h4>
-              <div className="space-y-1">
-                <div className="text-sm text-muted-foreground">• john-doe.pdf</div>
-                <div className="text-sm text-muted-foreground">• jane-smith.pdf</div>
-                <div className="text-sm text-muted-foreground">• bob-johnson.pdf</div>
               </div>
             </div>
 

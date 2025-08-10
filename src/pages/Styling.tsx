@@ -27,7 +27,7 @@ const Styling = () => {
               Background Color Controls
             </CardTitle>
             <CardDescription>
-              Set RGB and CMYK colors for background elements in your PDF output.
+              Set RGB and CMYK colors for the background of the template.
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -127,7 +127,7 @@ const Styling = () => {
 
             <div className="mt-6 p-4 bg-muted/20 rounded-lg">
               <p className="text-sm text-muted-foreground">
-                Background color values will be applied to the filled elements in your PDF output.
+                The colors chosen will apply to the background of the output file.
               </p>
             </div>
           </CardContent>
@@ -141,7 +141,7 @@ const Styling = () => {
               SVG Preview
             </CardTitle>
             <CardDescription>
-              Preview your SVG file with the applied styling changes.
+              Preview your output file with the applied styling changes.
             </CardDescription>
           </CardHeader>
           <CardContent>
