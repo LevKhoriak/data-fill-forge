@@ -1,4 +1,4 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { Link, useLocation, useMatch } from "react-router-dom";
 import {
   FileText,
   FileSpreadsheet,
@@ -35,13 +35,7 @@ export function AppSidebar() {
   const location = useLocation();
   const currentPath = location.pathname;
   const collapsed = state === "collapsed";
-
-  const isActive = (path: string) => currentPath === path;
-  const getNavCls = ({ isActive }: { isActive: boolean }) =>
-    isActive 
-      ? "bg-primary text-primary-foreground font-medium shadow-soft" 
-      : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground transition-colors";
-
+  
   return (
     <Sidebar
       className={collapsed ? "w-14" : "w-64"}
@@ -61,16 +55,22 @@ export function AppSidebar() {
           <SidebarGroupLabel>Workflow</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {navigationItems.map((item) => (
+              {navigationItems.map((item) => {
+                  const match = useMatch({ path: item.url, end: true });
+                  const cls = match
+                    ? "bg-primary text-primary-foreground font-medium shadow-soft"
+                    : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground transition-colors";
+
+                return (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <NavLink to={item.url} end className={getNavCls}>
+                  <SidebarMenuButton asChild className={cls}>
+                    <Link to={item.url}>
                       <item.icon className="h-4 w-4" />
                       {!collapsed && <span>{item.title}</span>}
-                    </NavLink>
+                    </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
-              ))}
+              )})}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
