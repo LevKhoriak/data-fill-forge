@@ -7,8 +7,11 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { useToast } from "@/hooks/use-toast";
 
 import { Link } from 'react-router-dom';
+import { useLanguage } from "@/contexts/LanguageContext";
+
 
 const Upload = () => {
+  const { t } = useLanguage();
   const [svgFile, setSvgFile] = useState<File | null>(null);
   const [csvFile, setCsvFile] = useState<File | null>(null);
   const [csvData, setCsvData] = useState<any[]>([]);
@@ -46,17 +49,17 @@ useEffect(() => {
 const processSvgFile = (file: File) => {
   const isSvg = file && (file.type === "image/svg+xml" || file.name.toLowerCase().endsWith(".svg"));
   if (!isSvg) {
-    toast({ title: "Invalid file type", description: "Please upload an SVG file", variant: "destructive" });
+    toast({ title: t('pages.upload.invalidFileType'), description: t('pages.upload.uploadSVGFile'), variant: "destructive" });
     return;
   }
   setSvgFile(file);
-  toast({ title: "SVG uploaded successfully", description: `${file.name} (${(file.size/1024/1024).toFixed(2)} MB)` });
+  toast({ title: t('pages.upload.SVGUploadSuccess'), description: `${file.name} (${(file.size/1024/1024).toFixed(2)} MB)` });
 };
 
 const processCsvFile = (file: File) => {
   const isCsv = file && (file.type === "text/csv" || file.name.toLowerCase().endsWith(".csv"));
   if (!isCsv) {
-    toast({ title: "Invalid file type", description: "Please upload a CSV file", variant: "destructive" });
+    toast({ title: t('pages.upload.invalidFileType'), description: t('pages.upload.uploadCSVFile'), variant: "destructive" });
     return;
   }
   setCsvFile(file);
@@ -76,7 +79,7 @@ const processCsvFile = (file: File) => {
       return row;
     });
     setCsvData(data);
-    toast({ title: "CSV uploaded successfully", description: `${file.name} — ${data.length} records found` });
+    toast({ title: t('pages.upload.CSVUploadSuccess'), description: `${file.name} — ${data.length} records found` });
   };
   reader.readAsText(file);
 };
@@ -140,8 +143,8 @@ const onCsvDrop = (e: React.DragEvent) => {
       <div className="flex items-center gap-3 mb-8">
         <UploadIcon className="h-8 w-8 text-primary" />
         <div>
-          <h1 className="text-3xl font-bold">Upload Files</h1>
-          <p className="text-muted-foreground">Upload your SVG template and CSV data file</p>
+          <h1 className="text-3xl font-bold">{t('pages.upload.title')}</h1>
+          <p className="text-muted-foreground">{t('pages.upload.description')}</p>
         </div>
       </div>
 
@@ -151,10 +154,10 @@ const onCsvDrop = (e: React.DragEvent) => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <FileCode2 className="h-5 w-5 text-primary" />
-              SVG Template
+              {t('pages.upload.svgTemplate')}
             </CardTitle>
             <CardDescription>
-              Upload your SVG template file that will be filled with data
+              {t('pages.upload.svgTemplateDesc')}
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -168,10 +171,10 @@ const onCsvDrop = (e: React.DragEvent) => {
             >
               <FileCode2 className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
               <div className="space-y-2">
-                <p className="text-sm font-medium">Drop your SVG file here</p>
+                <p className="text-sm font-medium">{t('pages.upload.dropSvgHere')}</p>
                 <p className="text-xs text-muted-foreground">or</p>
                 <Button variant="outline" size="sm" onClick={() => svgInputRef.current?.click()}>
-                  Browse Files
+                  {t('pages.upload.browseFiles')}
                 </Button>
                 <Input
                   ref={svgInputRef}
@@ -210,17 +213,17 @@ const onCsvDrop = (e: React.DragEvent) => {
                       className="mx-auto max-h-72 object-contain"
                     />
                   ) : (
-                    <p className="text-sm text-muted-foreground">Preview not available</p>
+                    <p className="text-sm text-muted-foreground">{t('pages.upload.previewNotAvailable')}</p>
                   )}
                   <p className="text-xs text-muted-foreground mt-2">
-                    SVG preview (rendered via object URL)
+                    {t('pages.upload.svgPreviewDesc')}
                   </p>
                 </div>
               </div>
             ) : (
               <div className="bg-muted/30 rounded-lg p-6 text-center">
                 <FileCode2 className="h-8 w-8 text-muted-foreground mx-auto mb-2" />
-                <p className="text-sm text-muted-foreground">SVG preview will appear here</p>
+                <p className="text-sm text-muted-foreground">{t('pages.upload.svgPreviewWillAppear')}</p>
               </div>
             )}
           </CardContent>
@@ -231,10 +234,10 @@ const onCsvDrop = (e: React.DragEvent) => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <FileSpreadsheet className="h-5 w-5 text-primary" />
-              CSV Data File
+              {t('pages.upload.csvDataFile')}
             </CardTitle>
             <CardDescription>
-              Upload your CSV file containing the data to fill the template
+              {t('pages.upload.csvDataFileDesc')}
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -248,10 +251,10 @@ const onCsvDrop = (e: React.DragEvent) => {
             >
               <FileSpreadsheet className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
               <div className="space-y-2">
-                <p className="text-sm font-medium">Drop your CSV file here</p>
+                <p className="text-sm font-medium">{t('pages.upload.dropCsvHere')}</p>
                 <p className="text-xs text-muted-foreground">or</p>
                 <Button variant="outline" size="sm" onClick={() => csvInputRef.current?.click()}>
-                  Browse Files
+                  {t('pages.upload.browseFiles')}
                 </Button>
                 <Input
                   ref={csvInputRef}
@@ -314,7 +317,7 @@ const onCsvDrop = (e: React.DragEvent) => {
             ) : (
               <div className="bg-muted/30 rounded-lg p-6 text-center">
                 <FileSpreadsheet className="h-8 w-8 text-muted-foreground mx-auto mb-2" />
-                <p className="text-sm text-muted-foreground">CSV data preview will appear here</p>
+                <p className="text-sm text-muted-foreground">{t('pages.upload.csvDataFileDesc')}</p>
               </div>
             )}
           </CardContent>
@@ -325,12 +328,12 @@ const onCsvDrop = (e: React.DragEvent) => {
           {svgFile && csvFile ? (
             <Button asChild className="bg-gradient-primary shadow-elegant">
               <Link to="/preview" state={{ svgFile, csvFile }}>
-                Continue to Data Preview
+                {t('pages.upload.continueToPreview')}
               </Link>
             </Button>
           ) : (
             <Button disabled className="bg-gradient-primary shadow-elegant">
-              Continue to Data Preview
+              {t('pages.upload.continueToPreviewDisabled')}
             </Button>
           )}
       </div>

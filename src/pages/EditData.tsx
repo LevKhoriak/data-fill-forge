@@ -3,8 +3,13 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useLanguage } from "@/contexts/LanguageContext";
+
+import { Link } from 'react-router-dom';
 
 const EditData = () => {
+  const { t } = useLanguage();
+  
   // Mock editable data
   const mockData = [
     { id: 1, name: "John Doe", email: "john@example.com", company: "Acme Corp", position: "Manager" },
@@ -17,8 +22,8 @@ const EditData = () => {
       <div className="flex items-center gap-3 mb-8">
         <Edit className="h-8 w-8 text-primary" />
         <div>
-          <h1 className="text-3xl font-bold">Edit Data</h1>
-          <p className="text-muted-foreground">Modify your CSV data directly in the table</p>
+          <h1 className="text-3xl font-bold">{t('pages.edit.title')}</h1>
+          <p className="text-muted-foreground">{t('pages.edit.description')}</p>
         </div>
       </div>
 
@@ -27,21 +32,21 @@ const EditData = () => {
           <CardTitle className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <TableIcon className="h-5 w-5 text-primary" />
-              Editable Data Table
+              {t('pages.edit.editableDataTable')}
             </div>
             <div className="flex gap-2">
               <Button variant="outline" size="sm">
                 <Plus className="h-4 w-4 mr-1" />
-                Add Row
+                {t('pages.edit.addRow')}
               </Button>
               <Button variant="outline" size="sm">
                 <Plus className="h-4 w-4 mr-1" />
-                Add Column
+                {t('pages.edit.addColumn')}
               </Button>
             </div>
           </CardTitle>
           <CardDescription>
-            Edit cells directly by clicking on them. Add or remove rows and columns as needed.
+            {t('pages.edit.editCellsDirectly')}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -49,7 +54,7 @@ const EditData = () => {
             <Table>
               <TableHeader>
                 <TableRow className="bg-muted/50">
-                  <TableHead className="w-16">Actions</TableHead>
+                  <TableHead className="w-16">{t('pages.edit.actions')}</TableHead>
                   <TableHead>
                     <div className="flex items-center justify-between">
                       ID
@@ -140,7 +145,7 @@ const EditData = () => {
           <div className="mt-4 p-4 bg-muted/20 rounded-lg">
             <p className="text-sm text-muted-foreground">
               {/* TODO: Connect edits to internal state */}
-              Changes are automatically saved. Use the buttons above to add/remove rows and columns.
+              {t('pages.edit.changesAutoSaved')}
             </p>
           </div>
         </CardContent>
@@ -148,10 +153,14 @@ const EditData = () => {
 
       <div className="flex justify-between">
         <Button variant="outline">
-          Back to Field Mapping
+          <Link to='/mapping'>
+            {t('pages.edit.backToFieldMapping')}
+          </Link>
         </Button>
         <Button className="bg-gradient-primary shadow-elegant">
-          Continue to Styling
+          <Link to='/styling'>
+            {t('pages.edit.continueToStyling')}
+          </Link>
         </Button>
       </div>
     </div>

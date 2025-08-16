@@ -2,8 +2,13 @@ import { FileSpreadsheet, Eye } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/contexts/LanguageContext";
+
+import { Link } from 'react-router-dom';
 
 const DataPreview = () => {
+  const { t } = useLanguage();
+  
   // Mock CSV data for preview
   const mockData = [
     { id: 1, name: "John Doe", email: "john@example.com", company: "Acme Corp", position: "Manager" },
@@ -16,8 +21,8 @@ const DataPreview = () => {
       <div className="flex items-center gap-3 mb-8">
         <Eye className="h-8 w-8 text-primary" />
         <div>
-          <h1 className="text-3xl font-bold">Data Preview</h1>
-          <p className="text-muted-foreground">Review your uploaded CSV data</p>
+          <h1 className="text-3xl font-bold">{t('pages.preview.title')}</h1>
+          <p className="text-muted-foreground">{t('pages.preview.description')}</p>
         </div>
       </div>
 
@@ -25,10 +30,10 @@ const DataPreview = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <FileSpreadsheet className="h-5 w-5 text-primary" />
-            CSV Data Table
+            {t('pages.preview.csvDataTable')}
           </CardTitle>
           <CardDescription>
-            Preview of your uploaded CSV data. Check that all fields are correctly parsed.
+            {t('pages.preview.csvDataTableDesc')}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -60,7 +65,7 @@ const DataPreview = () => {
           <div className="mt-4 p-4 bg-muted/20 rounded-lg">
             <p className="text-sm text-muted-foreground">
               {/* TODO: Parse and render CSV data as table */}
-              Total rows: {mockData.length} | Columns detected: 5
+              {t('pages.preview.totalRows')}: {mockData.length} | {t('pages.preview.columnsDetected')}: 5
             </p>
           </div>
         </CardContent>
@@ -68,10 +73,14 @@ const DataPreview = () => {
 
       <div className="flex justify-between">
         <Button variant="outline">
-          Back to Upload
+          <Link to='/'>
+            {t('pages.preview.backToUpload')}
+          </Link>
         </Button>
         <Button className="bg-gradient-primary shadow-elegant">
-          Continue to Field Mapping
+          <Link to='/mapping'>
+            {t('pages.preview.continueToMapping')}
+          </Link>
         </Button>
       </div>
     </div>
